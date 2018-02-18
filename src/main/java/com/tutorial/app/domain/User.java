@@ -28,9 +28,17 @@ public class User {
     public Long getId() {
         return this.id;
     }
+    
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @JsonProperty
-    public String getContent() {
+    public String getComment() {
         return this.comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

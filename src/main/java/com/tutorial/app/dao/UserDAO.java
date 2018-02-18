@@ -3,6 +3,8 @@ package com.tutorial.app.dao;
 import com.tutorial.app.domain.User;
 import io.dropwizard.hibernate.AbstractDAO;
 import java.util.List;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class UserDAO extends AbstractDAO<User>  {
@@ -10,15 +12,23 @@ public class UserDAO extends AbstractDAO<User>  {
         super(factory);
     }
 
-    public User findById(Long id){
-        return get(id);
+    public User getById(Long id){
+        return (User) currentSession().get(User.class, id);
     }
 
-    public long create(User user) {
-        return persist(user).getId();
+    public Long create(User user) {
+        return (Long) persist(user).getId();
     }
 
-    public List<User> findAll() {
+    public List<User> getAll() {
         return (List<User>) currentSession().createCriteria(User.class).list();
+    }
+
+    public void update(User user) {
+        currentSession().update(user);
+    }
+
+    public void remove(User user) {
+        currentSession().delete(user);
     }
 }
