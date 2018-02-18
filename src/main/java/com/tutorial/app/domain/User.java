@@ -1,25 +1,31 @@
-package com.tutorial.app.models;
+package com.tutorial.app.domain;
+
+import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.validator.constraints.Length;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "users")
 public class User {
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Length(max = 10)
+    @Column(name = "comment")
     private String comment;
 
     public User() {
         // Jackson deserialization
     }
 
-    public User(long id, String comment) {
+    public User(Long id, String comment) {
         this.id = id;
         this.comment = comment;
     }
 
     @JsonProperty
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 
