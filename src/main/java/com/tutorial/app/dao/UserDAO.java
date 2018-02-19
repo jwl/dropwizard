@@ -3,8 +3,6 @@ package com.tutorial.app.dao;
 import com.tutorial.app.domain.User;
 import io.dropwizard.hibernate.AbstractDAO;
 import java.util.List;
-
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class UserDAO extends AbstractDAO<User>  {
