@@ -20,6 +20,7 @@ release.properties
 .settings/
 .classpath
 .project
+configuration.xml
 
 logs
 hs_err_pid*
