@@ -7,7 +7,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "heartbeats")
 public class HeartBeat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +47,8 @@ public class HeartBeat {
         this.dateBeatOccurred = dateBeatOccurred;
     }
 
-    public User getPatient() {
-        return this.patient;
+    public long getPatientId() {
+        return this.patient.getId();
     }
 
     public void setPatient(User patient) {

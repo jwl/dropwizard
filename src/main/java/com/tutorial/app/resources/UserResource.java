@@ -1,5 +1,6 @@
 package com.tutorial.app.resources;
 
+import com.tutorial.app.domain.HeartBeat;
 import com.tutorial.app.domain.User;
 
 import io.dropwizard.hibernate.UnitOfWork;
@@ -81,11 +82,12 @@ public class UserResource {
     @GET
     @Path("/{id}/heartbeats")
     @UnitOfWork
-    public Response getUsersHeartbeats(@PathParam("id") Long id) {
+    public Response getPatientHeartbeats(@PathParam("id") Long id) {
         User user = userDAO.getById(id);
         if (user == null) {
             return Response.status(404).build();
         }
-        return Response.ok(hbDAO.getUsersBeats(id)).build();
+        List<HeartBeat> patientHeartBeats = hbDAO.getPatientHeartbeats(id);
+        return Response.ok(patientHeartBeats).build();
     }
 }

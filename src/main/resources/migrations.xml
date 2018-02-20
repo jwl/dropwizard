@@ -24,12 +24,12 @@
             <column name="dateBeatOccurred" type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column name="userId" type="bigint">
+            <column name="patientId" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
         <addForeignKeyConstraint 
-            baseColumnNames="userId"
+            baseColumnNames="patientId"
             baseTableName="heartbeats"
             constraintName="fk_user_heartbeat"
             referencedColumnNames="id"

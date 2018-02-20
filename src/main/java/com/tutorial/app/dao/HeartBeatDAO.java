@@ -15,9 +15,10 @@ public class HeartBeatDAO extends AbstractDAO<HeartBeat>  {
         return (Long) persist(beat).getId();
     }
 
-    public List<HeartBeat> getUsersBeats(Long id) {
-        Query query= currentSession().createQuery("from heartbeat where patientId = :id");
+    public List<HeartBeat> getPatientHeartbeats(Long id) {
+        // When using HQL, entity name should be the one that is being target, not table name.
+        Query query= currentSession().createQuery("from HeartBeat where patientId = :id");
         query.setParameter("id", id);
-        return (List<HeartBeat>) query.list();
+        return (List<HeartBeat>) (List) query.list();
     }
 }

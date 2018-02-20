@@ -49,6 +49,7 @@ public class Server extends Application<AppConfig> {
     public void run(AppConfig configuration,
                     Environment environment) {
         final UserDAO userDAO = new UserDAO(hibernateBundle.getSessionFactory());
-        environment.jersey().register(new UserResource(userDAO));
+        final HeartBeatDAO hbDAO = new HeartBeatDAO(hibernateBundle.getSessionFactory());
+        environment.jersey().register(new UserResource(userDAO, hbDAO));
     }
 }
