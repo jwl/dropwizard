@@ -19,6 +19,7 @@ release.properties
 # Eclipse
 .settings/
 .classpath
+.vscode
 .project
 configuration.yml
 
