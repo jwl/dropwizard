@@ -1,6 +1,7 @@
 package com.tutorial.app.domain;
 
 import javax.persistence.Entity;
+import java.util.Collections;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
@@ -28,7 +29,7 @@ public class User {
     public Long getId() {
         return this.id;
     }
-    
+
     public void setId(Long id) {
         this.id = id;
     }

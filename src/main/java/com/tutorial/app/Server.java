@@ -1,6 +1,7 @@
 package com.tutorial.app;
 
 import com.tutorial.app.resources.UserResource;
+import com.tutorial.app.dao.HeartBeatDAO;
 import com.tutorial.app.dao.UserDAO;
 
 import io.dropwizard.Application;
@@ -47,7 +48,7 @@ public class Server extends Application<AppConfig> {
     @Override
     public void run(AppConfig configuration,
                     Environment environment) {
-        final UserDAO dao = new UserDAO(hibernateBundle.getSessionFactory());
-        environment.jersey().register(new UserResource(dao));
+        final UserDAO userDAO = new UserDAO(hibernateBundle.getSessionFactory());
+        environment.jersey().register(new UserResource(userDAO));
     }
 }

@@ -16,4 +16,23 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="2" author="afalco">
+        <createTable tableName="heartbeats">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dateBeatOccurred" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="userId" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint 
+            baseColumnNames="userId"
+            baseTableName="heartbeats"
+            constraintName="fk_user_heartbeat"
+            referencedColumnNames="id"
+            referencedTableName="users"/>
+    </changeSet>
 </databaseChangeLog>

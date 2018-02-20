@@ -4,6 +4,8 @@ import com.tutorial.app.domain.User;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import java.util.List;
+
+import com.tutorial.app.dao.HeartBeatDAO;
 import com.tutorial.app.dao.UserDAO;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -21,9 +23,15 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class UserResource {
     private UserDAO userDAO;
+    private HeartBeatDAO hbDAO;
 
     public UserResource(UserDAO userDAO) {
         this.userDAO = userDAO;
+    }
+
+    public UserResource(UserDAO userDAO, HeartBeatDAO hbDAO){
+        this.userDAO = userDAO;
+        this.hbDAO = hbDAO;
     }
 
     @GET
@@ -68,5 +76,16 @@ public class UserResource {
         }
         userDAO.remove(user);
         return Response.status(200).build();
+    }
+
+    @GET
+    @Path("/{id}/heartbeats")
+    @UnitOfWork
+    public Response getUsersHeartbeats(@PathParam("id") Long id) {
+        User user = userDAO.getById(id);
+        if (user == null) {
+            return Response.status(404).build();
+        }
+        return Response.ok(hbDAO.getUsersBeats(id)).build();
     }
 }
