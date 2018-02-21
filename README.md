@@ -1,4 +1,4 @@
-## Dropwizard basic CRUD
+## Dropwizard basic CRUD (core System)
 
 A simple project to get to know Dropwizard framework deeper.
 Dropwizard is a framework with out-of-the-box tools which are most commonly used in Java, deploy-ready.
