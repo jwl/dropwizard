@@ -1,15 +1,36 @@
 package com.heartbeater.app;
 
-import com.heartbeater.app.domain.HeartPool;
+import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import java.util.List;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.heartbeater.app.domain.Patient;
+import com.heartbeater.app.senders.HttpSender;
+import com.heartbeater.app.senders.ISender;
+
 
 public class App 
 {
-    public static void main( String[] args )
+
+    // It would be nice to have a monitor that instances this same application N times
+    public static void main( String[] args ) throws JsonParseException, JsonMappingException
     {
         // System.out.print(getProcessId("<PID>"));
-        HeartPool heartPool = new HeartPool(4);
-        heartPool.initiateBeatPool();
+        ISender sender = new HttpSender();
+        String result = sender.getUsers();
+        
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Patient> patientsList = objectMapper.readValue(result, new TypeReference<List<Patient>>(){});
+            System.out.println(patientsList.get(0).id);
+        } catch(IOException exception) {
+            System.out.println(exception.getMessage());
+        }
+        
     }
 
     private static String getProcessId(final String fallback) {

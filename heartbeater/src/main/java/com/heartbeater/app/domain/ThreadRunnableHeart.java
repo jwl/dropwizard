@@ -22,7 +22,7 @@ public class ThreadRunnableHeart implements Runnable {
 
     public void run() {
         while (true) {
-            if (heart.getBeats().size() % 100 == 0) {
+            if (heart.getBeats().size() % 1000 == 0) {
                 // Save on database
             }
             heart.beat();
