@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.heartbeater.app.domain.HeartPool;
 import com.heartbeater.app.domain.Patient;
 import com.heartbeater.app.senders.HttpSender;
 import com.heartbeater.app.senders.ISender;
@@ -26,11 +27,13 @@ public class App
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             List<Patient> patientsList = objectMapper.readValue(result, new TypeReference<List<Patient>>(){});
-            System.out.println(patientsList.get(0).id);
+            HeartPool heartPool = new HeartPool(patientsList);
+            heartPool.initiateBeatPool();
         } catch(IOException exception) {
             System.out.println(exception.getMessage());
+        } catch(InterruptedException exception) {
+            System.out.println(exception.getMessage());
         }
-        
     }
 
     private static String getProcessId(final String fallback) {

@@ -6,10 +6,12 @@ public class ThreadRunnableHeart implements Runnable {
     private Thread thread;
     private String threadName;
     private Heart heart;
+    private Long id;
 
-    public ThreadRunnableHeart(String threadName) {
+    public ThreadRunnableHeart(String threadName, Long id) {
         this.threadName = threadName;
-        this.heart = new Heart();
+        this.heart = new Heart();        
+        this.id = id;
         System.out.println("Thread starting: " + threadName);
     }
 

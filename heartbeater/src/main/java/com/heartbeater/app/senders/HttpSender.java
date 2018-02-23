@@ -20,7 +20,6 @@ public class HttpSender implements ISender{
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
             int responseCode = con.getResponseCode();
-            System.out.println(responseCode);
             if (responseCode == 200) {
                 BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 String inputLine;
@@ -44,7 +43,6 @@ public class HttpSender implements ISender{
             System.out.println("Something occured");
             return null;
         }
-
     }
     public void sendHeartRate() {
     }
