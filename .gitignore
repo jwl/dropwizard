@@ -21,7 +21,11 @@ release.properties
 .classpath
 .vscode
 .project
+.idea
+*.iml
 configuration.yml
 
 logs
 hs_err_pid*
+core/data
+core/env

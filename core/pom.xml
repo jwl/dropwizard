@@ -10,6 +10,9 @@
 
   <properties>
     <dropwizard.version>0.9.2</dropwizard.version>
+    <mockito.version>2.11.0</mockito.version>
+    <junit.platform.version>1.0.1</junit.platform.version>
+    <junit.version>5.0.1</junit.version>
   </properties>
 
   <build>
@@ -52,13 +55,6 @@
   </build>
 
   <dependencies>
-    <!-- JUnit -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
 
     <!-- DropWizard -->
     <dependency>
@@ -75,6 +71,31 @@
         <groupId>io.dropwizard</groupId>
         <artifactId>dropwizard-migrations</artifactId>
         <version>${dropwizard.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>io.dropwizard</groupId>
+        <artifactId>dropwizard-testing</artifactId>
+        <version>1.2.0</version>
+    </dependency>
+
+    <!-- JUnit -->
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-runner</artifactId>
+        <version>${junit.platform.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${mockito.version}</version>
+        <scope>test</scope>
     </dependency>
 
     <!-- MySQL connector -->

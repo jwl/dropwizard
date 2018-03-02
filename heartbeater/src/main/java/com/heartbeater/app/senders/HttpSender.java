@@ -10,7 +10,8 @@ import java.io.InputStreamReader;
 public class HttpSender implements ISender{
 
     private final String USER_AGENT = "Mozilla/5.0";
-    private String url = "http://localhost:8080/users";
+    // TODO: Get this from a property
+    private String url = "http://192.168.99.100:8000/users";
 
     public String getUsers() {
         try {
@@ -37,10 +38,10 @@ public class HttpSender implements ISender{
                 return "";
             }
         } catch (MalformedURLException malformedURL) {
-            System.out.print("Exception");
+            System.out.print("Url passed is not formatted correctly.");
             return null;
         } catch (IOException ioException) {
-            System.out.println("Something occured");
+            System.out.println("There was a problem with connecting to the specified api.");
             return null;
         }
     }

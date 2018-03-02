@@ -2,6 +2,7 @@ package com.heartbeater.app;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -29,10 +30,10 @@ public class App
             List<Patient> patientsList = objectMapper.readValue(result, new TypeReference<List<Patient>>(){});
             HeartPool heartPool = new HeartPool(patientsList);
             heartPool.initiateBeatPool();
-        } catch(IOException exception) {
-            System.out.println(exception.getMessage());
         } catch(InterruptedException exception) {
-            System.out.println(exception.getMessage());
+            exception.printStackTrace();
+        } catch(IOException exception) {
+            exception.printStackTrace();
         }
     }
 
