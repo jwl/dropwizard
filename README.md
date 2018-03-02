@@ -10,7 +10,7 @@ There are a couple of things we need to understand,
 - Domain is the domain entities of your problem which have a mapping into your database, they represent PJO that are being persisted.
 
 
-### How does Dropwizard work ?
+## How does Dropwizard work ?
 
 The main thing we need to understand about Dropwizard is the main Application file, in our case `Server.java`, which does most of the work. This tasks include:
 
@@ -42,14 +42,27 @@ database:
 ```
 
 
-### How to run it.
+## How to run it.
+
+### Using your own OS
 
 To run this specific project correctly, there are a few commands we need to specify.
-- `mvn package` in order to create our `.jar` file with every compiled library.
+- `mvn package` in order to create our `.jar` file with every compiled library including the server, this runs for both, `core` and `heartbeater`.
+- `java -jar target/jarGeneratedName>` in order to run heartbeater.
 - `java -jar target/<jarGeneratedName> db migrate <pathToConfigFile>` which will migrate your database, database needs to be created though. Migrations can be found in `src/main/resources/*`.
 - `java -jar target/<jarGeneratedName> server <pathToConfigFile>` will run your app.
 
 After that, there is an executable you can run just by `./run.sh`.
+
+### If you wanna go pro, use docker ;)
+
+To run this with docker, its as simple as running on `core/` and on `heartbeater/` the following master command.
+```
+docker-compose up
+```
+This will build the images and create your containers accoordingly. Bear in mind `heartbeater` service needs `core` to be running in order to work correctly.
+You might have to change the address to the app in `heartbeater/main/java/com/heartbeater/app/senders/HttpSender.java` to access the API, as I hardcoded it to the `docker-machine` address I am using.
+I will create a file which you specify the address later.
 
 ### Usage
 
