@@ -11,11 +11,17 @@ public class Heart {
     private ArrayList<String> beatRecords;
     private DateFormat dateFormat;
     private Random random;
+    private Patient patient;
 
-    public Heart() {
-        random = new Random();
-        beatRecords = new ArrayList<String>();
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public Heart(Patient patient) {
+        this.patient = patient;
+        this.random = new Random();
+        this.beatRecords = new ArrayList<String>();
+        this.dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    }
+
+    public Patient getPatient() {
+        return this.patient;
     }
 
     public void beat() {

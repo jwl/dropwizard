@@ -6,12 +6,10 @@ public class ThreadRunnableHeart implements Runnable {
     private Thread thread;
     private String threadName;
     private Heart heart;
-    private Long id;
 
-    public ThreadRunnableHeart(String threadName, Long id) {
+    public ThreadRunnableHeart(String threadName, Patient patient) {
         this.threadName = threadName;
-        this.heart = new Heart();        
-        this.id = id;
+        this.heart = new Heart(patient);        
         System.out.println("Thread starting: " + threadName);
     }
 
@@ -25,7 +23,7 @@ public class ThreadRunnableHeart implements Runnable {
     public void run() {
         while (true) {
             if (heart.getBeats().size() % 100 == 0) {
-                // Save on database
+                // Save ?
                 heart.printBeats();
             }
             heart.beat();

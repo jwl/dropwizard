@@ -5,5 +5,6 @@ public class Patient {
     public String comment;
 
     public Patient() {
+
     }
 }

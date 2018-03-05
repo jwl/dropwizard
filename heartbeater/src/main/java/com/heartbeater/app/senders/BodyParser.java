@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
-public class ResponseParser {
-    public String parseResponse(HttpURLConnection con) throws IOException{
+public class BodyParser {
+    public String parseIncomingBody(HttpURLConnection con) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuffer response = new StringBuffer();
@@ -15,7 +15,6 @@ public class ResponseParser {
             response.append(inputLine);
         }
         in.close();
-
         return response.toString();
     }
 }
