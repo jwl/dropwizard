@@ -20,16 +20,12 @@ public class App
     {
         // System.out.print(getProcessId("<PID>"));
         IUserSender sender = new UserHttpSender();
-        String result = sender.getUsers();
+        List<Patient> result = sender.getPatients();
         
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            List<Patient> patientsList = objectMapper.readValue(result, new TypeReference<List<Patient>>(){});
-            HeartPool heartPool = new HeartPool(patientsList);
+            HeartPool heartPool = new HeartPool(result);
             heartPool.initiateBeatPool();
         } catch(InterruptedException exception) {
-            exception.printStackTrace();
-        } catch(IOException exception) {
             exception.printStackTrace();
         }
     }

@@ -1,21 +1,50 @@
 package com.heartbeater.app.senders;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.heartbeater.app.domain.Heart;
+import com.heartbeater.app.domain.Patient;
+import com.heartbeater.app.exceptions.HttpSenderException;
+
+import java.io.IOException;
+import java.util.List;
+
 public class UserHttpSender extends AbstractHttpSender implements IUserSender {
-    protected BodyParser parser;
-    protected final String USER_AGENT = "Mozilla/5.0";
+    private ObjectMapper objectMapper;
+    private BodyParser parser;
+    private final String USER_AGENT = "Mozilla/5.0";
     // TODO: Get this from a property
-    private String url = "http://192.168.99.100:8000/users";
+    private String usersURL = "http://192.168.99.100:8000/users";
 
     public UserHttpSender() {
-        parser = new BodyParser();
+        this.parser = new BodyParser();
+        this.objectMapper = new ObjectMapper();
     }
 
-    public String getUsers() {
+    public List<Patient> getPatients() {
         try {
-            return this.parseBody(get(this.url, this.USER_AGENT), this.parser);
+            String result = parser.parseIncomingBody(get(usersURL, USER_AGENT));
+            return objectMapper.readValue(result, new TypeReference<List<Patient>>(){});
         } catch(HttpSenderException exception) {
             System.out.println(exception.getMessage());
             return null;
+        } catch(IOException exception) {
+            System.out.println(exception.getMessage());
+            return null;
+        }
+    }
+
+    public void sendBeats(Heart beats) {
+        try {
+            String body = objectMapper.writeValueAsString(beats);
+            System.out.println(body);
+            post(usersURL, USER_AGENT, body);
+        } catch(HttpSenderException exception) {
+            System.out.println(exception.getMessage());
+        } catch (JsonProcessingException jsonProcessingException) {
+            jsonProcessingException.printStackTrace();
         } 
     }
 }
