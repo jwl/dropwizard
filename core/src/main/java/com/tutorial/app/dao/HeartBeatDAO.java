@@ -4,6 +4,7 @@ import com.tutorial.app.domain.HeartBeat;
 import io.dropwizard.hibernate.AbstractDAO;
 import java.util.List;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 public class HeartBeatDAO extends AbstractDAO<HeartBeat>  {
@@ -17,8 +18,15 @@ public class HeartBeatDAO extends AbstractDAO<HeartBeat>  {
 
     public List<HeartBeat> getPatientHeartbeats(Long id) {
         // When using HQL, entity name should be the one that is being target, not table name.
-        Query query= currentSession().createQuery("from HeartBeat where patientId = :id");
+        Query query = currentSession().createQuery("from HeartBeat where patientId = :id");
         query.setParameter("id", id);
         return (List<HeartBeat>) (List) query.list();
+    }
+
+    public void bulkCreate(List<HeartBeat> beats) {
+        Session session = currentSession();
+        for (HeartBeat heart : beats) {
+            session.persist(heart);
+        }
     }
 }

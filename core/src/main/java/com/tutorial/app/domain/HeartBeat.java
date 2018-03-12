@@ -47,10 +47,10 @@ public class HeartBeat {
         this.dateBeatOccurred = dateBeatOccurred;
     }
 
-    public long getPatientId() {
-        return this.patient.getId();
+    public User getPatient() {
+        return this.patient;
     }
-
+    
     public void setPatient(User patient) {
         this.patient = patient;
     }

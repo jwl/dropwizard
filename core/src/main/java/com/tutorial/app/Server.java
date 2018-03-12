@@ -1,6 +1,7 @@
 package com.tutorial.app;
 
 import com.tutorial.app.resources.UserResource;
+import com.tutorial.app.resources.HeartBeatResource;
 import com.tutorial.app.dao.HeartBeatDAO;
 import com.tutorial.app.dao.UserDAO;
 
@@ -51,5 +52,6 @@ public class Server extends Application<AppConfig> {
         final UserDAO userDAO = new UserDAO(hibernateBundle.getSessionFactory());
         final HeartBeatDAO hbDAO = new HeartBeatDAO(hibernateBundle.getSessionFactory());
         environment.jersey().register(new UserResource(userDAO, hbDAO));
+        environment.jersey().register(new HeartBeatResource(hbDAO));
     }
 }

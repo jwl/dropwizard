@@ -1,5 +1,6 @@
 package com.tutorial.app.resources;
 
+import com.tutorial.app.domain.BeatWrapper;
 import com.tutorial.app.domain.HeartBeat;
 import com.tutorial.app.domain.User;
 
