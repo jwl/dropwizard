@@ -10,7 +10,7 @@ import com.heartbeater.app.domain.Heart;
 import com.heartbeater.app.exceptions.HttpSenderException;
 
 public abstract class AbstractHttpSender {
-    
+
     public HttpURLConnection get(String url, String userAgent) throws HttpSenderException {
         try {
             HttpURLConnection con = connect(url, userAgent, "GET");
@@ -27,10 +27,11 @@ public abstract class AbstractHttpSender {
 
     public HttpURLConnection post(String url, String userAgent, String data) throws HttpSenderException {
         HttpURLConnection con = connect(url, userAgent, "POST");
+        con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+        con.setRequestProperty("Content-Type", "application/json");
         con.setDoOutput(true);
         try {
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        
             wr.writeBytes(data);
             wr.flush();
             wr.close();

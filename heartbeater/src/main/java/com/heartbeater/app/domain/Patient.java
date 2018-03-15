@@ -7,4 +7,8 @@ public class Patient {
     public Patient() {
 
     }
+
+    public Patient(Long id) {
+        this.id = id;
+    }
 }

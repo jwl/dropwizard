@@ -1,11 +1,8 @@
 package com.heartbeater.app;
 
-import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.util.List;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.heartbeater.app.domain.HeartPool;
 import com.heartbeater.app.domain.Patient;
 import com.heartbeater.app.senders.IUserSender;
