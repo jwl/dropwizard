@@ -23,7 +23,7 @@ public class HeartBeatResource {
 
     private boolean beatsAreValid(List<HeartBeat> beats) {
         for (HeartBeat beat : beats) {
-            if ((Long)beat.getPatient().getId() == null) {
+            if (beat.getPatient() == null) {
                 return false;
             }
         }

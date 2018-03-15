@@ -2,6 +2,7 @@ package com.tutorial.app.domain;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class HeartBeat {
     private Long id;
     
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dateBeatOccurred;
 
     @OneToOne
@@ -39,11 +41,11 @@ public class HeartBeat {
         this.id = id;
     }
 
-    public Date getDateBeatOccured() {
+    public Date getDateBeatOccurred() {
         return this.dateBeatOccurred;
     }
 
-    public void setDateBeatOccured(Date dateBeatOccurred) {
+    public void setDateBeatOccurred(Date dateBeatOccurred) {
         this.dateBeatOccurred = dateBeatOccurred;
     }
 
