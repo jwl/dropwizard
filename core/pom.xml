@@ -13,6 +13,8 @@
     <mockito.version>2.11.0</mockito.version>
     <junit.platform.version>1.0.1</junit.platform.version>
     <junit.version>5.0.1</junit.version>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
   </properties>
 
   <build>
